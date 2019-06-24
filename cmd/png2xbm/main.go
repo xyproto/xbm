@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/xyproto/xbm"
+	"image/png"
 	"os"
 )
 
@@ -22,7 +23,7 @@ func main() {
 	}
 	defer f.Close()
 
-	err := xbm.Encode(f, m)
+	err = xbm.Encode(f, m)
 	if err != nil {
 		panic(err)
 	}

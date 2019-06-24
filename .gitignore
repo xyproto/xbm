@@ -11,6 +11,8 @@
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
 
+# Converted images
 *.xbm
-*.png
-*.xpm
+
+# Example executables
+cmd/png2xbm/png2xbm

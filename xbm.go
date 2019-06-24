@@ -9,9 +9,15 @@ import (
 )
 
 type Encoder struct {
+	// The internal image name, when encoding the data. The default is "img".
 	Name string
+
+	// The threshold, from 0 to 1, for when grayscale colors should appear as
+	// white or black. The default is 0.7.
+	Threshold float64
 }
 
+// hexify converts a slice of bytes to a slice of hex strings on the form 0x00
 func hexify(data []byte) (r []string) {
 	for _, b := range data {
 		hexdigits := fmt.Sprintf("%x", b)
@@ -44,7 +50,7 @@ func (enc *Encoder) Encode(w io.Writer, m image.Image) error {
 		0x10,
 		0x20,
 		0x40,
-		0x50,
+		0x80,
 	}
 
 	var pixels []byte
@@ -54,7 +60,7 @@ func (enc *Encoder) Encode(w io.Writer, m image.Image) error {
 			c := m.At(x, y)
 			grayColor := color.GrayModel.Convert(c).(color.Gray)
 			value := grayColor.Y
-			if value > 128 {
+			if value > byte(float64(256)*enc.Threshold) {
 				// white
 				pixel |= masks[maskIndex]
 			} else {
@@ -82,6 +88,6 @@ func (enc *Encoder) Encode(w io.Writer, m image.Image) error {
 
 // Encode will encode the image as XBM, using "img" as the image name
 func Encode(w io.Writer, m image.Image) error {
-	e := &Encoder{"img"}
+	e := &Encoder{"img", 0.5}
 	return e.Encode(w, m)
 }
