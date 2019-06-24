@@ -8,12 +8,13 @@ import (
 	"strings"
 )
 
+// Encoder contains encoding configuration that is used by the Encode method
 type Encoder struct {
 	// The internal image name, when encoding the data. The default is "img".
 	Name string
 
 	// The threshold, from 0 to 1, for when grayscale colors should appear as
-	// white or black. The default is 0.7.
+	// white or black. The default is 0.5.
 	Threshold float64
 }
 
