@@ -21,12 +21,7 @@ type Encoder struct {
 // hexify converts a slice of bytes to a slice of hex strings on the form 0x00
 func hexify(data []byte) (r []string) {
 	for _, b := range data {
-		hexdigits := fmt.Sprintf("%x", b)
-		if len(hexdigits) == 1 {
-			r = append(r, "0x0"+hexdigits)
-		} else {
-			r = append(r, "0x"+hexdigits)
-		}
+		r = append(r, fmt.Sprintf("0x%02x", b))
 	}
 	return r
 }
