@@ -60,7 +60,7 @@ func (enc *Encoder) Encode(w io.Writer, m image.Image) error {
 			c := m.At(x, y)
 			grayColor := color.GrayModel.Convert(c).(color.Gray)
 			value := grayColor.Y
-			if value > byte(float64(256)*enc.Threshold) {
+			if value <= byte(float64(256)*enc.Threshold) {
 				// white
 				pixel |= masks[maskIndex]
 			} else {
