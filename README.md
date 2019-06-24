@@ -4,6 +4,8 @@ Package for writing the 1-bit black/white image format that originated from X11:
 
 Uses the standard Go way for encoding images, by providing an `Encode` function.
 
+Includes an example `png2xbm` program, that can convert from `input.png` to `output.xbm`.
+
 ### General info
 
 * Version: 1.0.0
