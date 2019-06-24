@@ -6,6 +6,6 @@ Uses the standard Go way for encoding images, by providing an `Encode` function.
 
 ### General info
 
-* Version: 0.0.0
+* Version: 1.0.0
 * License: MIT
 * Author: Alexander F. Rødseth &lt;xyproto@archlinux.org&gt;
